@@ -93,6 +93,97 @@
             cursor: pointer;
             border-radius: 3px;
         }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .question-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .option:hover {
+            background-color: #45a049;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 9999;
+        }
+
+        .popup-show {
+            display: block;
+        }
+
+        .close-button {
+            background-color: #ccc;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+        body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+body {
+    background-image: url('https://img1.imgtp.com/2023/11/01/5DtqrDzi.jpg'); /* 替换 'your-image.jpg' 为你的图像文件路径 */
+    
+    background-repeat: no-repeat; /* 防止图像平铺 */
+    background-attachment: fixed; /* 图像不会随滚动而滚动 */
+    background-position: center; /* 图像水平居中 */
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px; /* 设置网站内容的最大宽度 */
+    margin: 0 auto; /* 水平居中 */
+    background-color: rgba(255, 255, 255, 0.7); /* 可选：添加半透明背景以突出显示内容 */
+    padding: 20px; /* 可选：为内容添加内边距 */
+}
     </style>
      <script>
   window.onload = function() {
@@ -119,6 +210,38 @@
         <span id="popup-content"></span>
         <button class="popup-close" onclick="hidePopup()">关闭</button>
     </div>
+    <div class="question-container">
+        <div class="question">王长旭喜欢干什么？</div>
+        <div class="options">
+            <button class="option" onclick="checkAnswer(true)">倒灌</button>
+            <button class="option" onclick="checkAnswer(false)">学习</button>
+        </div>
+    </div>
+
+    <div id="correct-popup" class="popup">
+        <p>你答对了</p>
+        <button class="close-button" onclick="closePopup()">关闭</button>
+    </div>
+
+    <div id="incorrect-popup" class="popup">
+        <p>你选错了。</p>
+        <button class="close-button" onclick="closePopup()">关闭</button>
+    </div>
+
+    <script>
+        function checkAnswer(isCorrect) {
+            var popupId = isCorrect ? "correct-popup" : "incorrect-popup";
+            var popup = document.getElementById(popupId);
+            popup.classList.add("popup-show");
+        }
+
+        function closePopup() {
+            var popups = document.querySelectorAll(".popup");
+            popups.forEach(function(popup) {
+                popup.classList.remove("popup-show");
+            });
+        }
+    </script>
 
     <script>
         function showPopup() {
@@ -173,5 +296,6 @@
    
 </body>
 </html>
+
 
 
